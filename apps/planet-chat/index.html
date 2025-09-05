@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- <base href="/"> -->
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A new Flutter project.">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="planet_chat">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>planet_chat</title>
+  <link rel="manifest" href="manifest.json">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #121212; /* фон */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    #splash {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-family: sans-serif;
+    }
+    .splash-logo {
+      width: 120px;
+      height: 120px;
+      background: url("icons/Icon-192.png") no-repeat center/contain;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="splash">
+    <div class="splash-logo"></div>
+    <div id="splash-branding">Planet Chat</div>
+  </div>
+
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>
