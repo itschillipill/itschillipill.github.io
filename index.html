@@ -1,90 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="A showcase of my projects">
-  
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A showcase of my projects" />
+
   <title>My Projects</title>
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <link rel="icon" type="image/png" href="favicon.png" />
 
   <style>
-    /* Основные стили страницы */
+    :root {
+      --primary: #4f46e5; /* indigo */
+      --secondary: #22c55e; /* green */
+      --bg: #0f172a; /* slate-900 */
+      --card: #111827; /* gray-900 */
+      --text: #e5e7eb; /* gray-200 */
+      --muted: #9ca3af; /* gray-400 */
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-      display: flex;
-      justify-content: center;
-      align-items: center;
       min-height: 100vh;
-      color: #333;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: radial-gradient(1200px 600px at 10% 10%, #1e293b, var(--bg));
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
     }
 
-    /* Контейнер */
     .container {
-      background: #fff;
-      padding: 40px 30px;
-      border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      max-width: 1000px;
+      width: 100%;
+    }
+
+    header {
       text-align: center;
-      max-width: 600px;
-      width: 90%;
-      transition: transform 0.3s ease;
+      margin-bottom: 40px;
     }
 
-    .container:hover {
-      transform: translateY(-5px);
-    }
-
-    /* Заголовок */
-    h1 {
-      margin-bottom: 30px;
-      font-size: 2.2em;
+    header h1 {
+      font-size: 2.8rem;
+      margin: 0 0 10px;
       letter-spacing: 1px;
-      color: #222;
     }
 
-    /* Список проектов */
-    .project-list {
-      list-style: none;
-      padding: 0;
+    header p {
       margin: 0;
+      color: var(--muted);
+      font-size: 1.1rem;
     }
 
-    .project-list li {
-      margin: 15px 0;
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
     }
 
-    .project-list a {
+    .project-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 24px;
       text-decoration: none;
-      color: #007BFF;
-      font-size: 1.2em;
-      font-weight: 600;
-      padding: 10px 20px;
-      display: inline-block;
-      border-radius: 8px;
-      transition: all 0.3s ease;
+      color: var(--text);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
     }
 
-    .project-list a:hover {
-      background-color: #007BFF;
-      color: #fff;
-      transform: scale(1.05);
+    .project-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(400px 200px at var(--x, 50%) var(--y, 50%), rgba(79,70,229,0.25), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    .project-card:hover::before {
+      opacity: 1;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+      border-color: rgba(79,70,229,0.6);
+    }
+
+    .project-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+    }
+
+    .project-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin: 0 0 8px;
+    }
+
+    .project-desc {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.4;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>My Projects</h1>
-    <ul class="project-list">
-      <li><a href="caesar-encryptor/index.html">Caesar Encryptor</a></li>
-      <li><a href="bolshoy_sad/index.html">Bolshoy Sad</a></li>
-      <li><a href="planet-chat/index.html">Planet Chat</a></li>
-      <li><a href="BookStore-Plus/index.html">BookStore Plus</a></li>
-    </ul>
+    <header>
+      <h1>My Projects</h1>
+      <p>Small collection of my web experiments and apps</p>
+    </header>
+
+    <section class="projects">
+      <a href="caesar-encryptor/index.html" class="project-card">
+        <div class="project-icon">🔐</div>
+        <h2 class="project-title">Caesar Encryptor</h2>
+        <p class="project-desc">Simple encryption tool based on the Caesar cipher.</p>
+      </a>
+
+      <a href="bolshoy_sad/index.html" class="project-card">
+        <div class="project-icon">🌳</div>
+        <h2 class="project-title">Bolshoy Sad</h2>
+        <p class="project-desc">Website concept with clean layout and visuals.</p>
+      </a>
+
+      <a href="planet-chat/index.html" class="project-card">
+        <div class="project-icon">🪐</div>
+        <h2 class="project-title">Planet Chat</h2>
+        <p class="project-desc">Chat UI experiment with a futuristic style.</p>
+      </a>
+
+      <a href="BookStore-Plus/index.html" class="project-card">
+        <div class="project-icon">📚</div>
+        <h2 class="project-title">BookStore Plus</h2>
+        <p class="project-desc">Online bookstore interface with catalog pages.</p>
+      </a>
+    </section>
   </div>
+
+  <script>
+    // light hover glow following cursor
+    document.querySelectorAll('.project-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--x', `${e.clientX - rect.left}px`);
+        card.style.setProperty('--y', `${e.clientY - rect.top}px`);
+      });
+    });
+  </script>
 </body>
 </html>
